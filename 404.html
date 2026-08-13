@@ -5,10 +5,571 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>페이지를 찾을 수 없습니다 | 세무회계 표선</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAB/lBMVEUAHkMHI0YBFjkACzQoOEuJl6qyusb+/v4bM1BUY3U4RE5LWm1md44vRGO8xM1Xa4RGSUaSczqMkpeaoqyxtbcWJjVzg5k5UnAjLTJdcYlxXTNqXUHEzNXm6ewrNz5UV1GCh4vN09tbUjl2ZD5lb3lncXt/jaN+kKWMbzqAj6GhfTqrgjkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADMe5McAAAAgHRSTlP//////////////////////////////////////////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJXWOW8AAAFWSURBVHjavVPXksMgDGQFxjTjHqeX6+X//+9k52Zix0kewwOCQVqtVkiIpy/g8bNQSuBBNIRzg7kTLgmuYHMbBBILvdi/8GbkHASgECuv1CsOVQw0AwEljSOCKkHkmppwjZ80S46CKQ2bZZNITON9XGKo40f19zb6CQZIexKGeeL3IKEEeT12AHVNy/jakvlqveYsbdONPJjBkbgOn9bKJKntz8cJC8rdYLp0ZdNzdpfTBaDYrMtyzRoiDTY10hQbvm8cLj3whVKMa3qHLGM5VOFHPWEO7z0g1ICwTaSgtzEHyJylIyTnFGqXsLCrsYMwmmuPu5Cuck5xSrN9NON2QH5W1GmtdyHTQeuMqqnWzD9aIpL6W5Lgg40QV81QW9ZHhj4QZE/ZrJ2kYuXI1UStqraz994DH7q2CWytuQjc/JLI84ULOe59SgiS3jHLu8OB//XkYf0DhZAN8aAOBlcAAAAASUVORK5CYII=" sizes="32x32">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css">
+<style>
+/* =========================================================
+   세무회계 표선 — pyoseontax.com
+   Brand tokens: 로고/명함에서 추출
+   ========================================================= */
+
+:root{
+  --navy:        #011F44;
+  --navy-deep:   #01152E;
+  --navy-line:   #16355C;
+  --gold:        #A47E39;
+  --gold-bright: #C9A464;
+  --gold-pale:   #E4D3AE;
+  --paper:       #FAF6ED;
+  --paper-2:     #F2EBDD;
+  --ink:         #1C1E22;
+  --ink-mute:    #5E646F;
+  --white:       #FFFFFF;
+
+  --display: 'Gowun Batang', 'Nanum Myeongjo', serif;
+  --body: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+          'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+
+  --wrap: 1180px;
+  --hdr: 92px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* ---------- reset ---------- */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:16px; line-height:1.75;
+  letter-spacing:-.01em; word-break:keep-all; overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; height:auto; display:block; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3{ margin:0; font-family:var(--display); font-weight:700; line-height:1.32; letter-spacing:-.02em; }
+p{ margin:0; }
+ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
+button{ font:inherit; }
+.sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+.skip{
+  position:absolute; left:-9999px; top:0; z-index:200;
+  background:var(--navy); color:var(--paper); padding:12px 20px;
+}
+.skip:focus{ left:0; }
+:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; }
+
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding:0 24px; }
+
+/* 로고의 골드 마름모 — 사이트 전역 기호 */
+.dia{
+  display:inline-block; width:18px; height:6px; margin-right:10px;
+  background:var(--gold); vertical-align:middle;
+  clip-path:polygon(0 50%, 50% 18%, 100% 50%, 50% 82%);
+}
+
+/* =========================================================
+   버튼
+   ========================================================= */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:16px 30px; font-size:15px; font-weight:600; letter-spacing:-.01em;
+  border:1px solid transparent; border-radius:2px; cursor:pointer;
+  transition:background .25s var(--ease), color .25s var(--ease),
+             border-color .25s var(--ease), transform .25s var(--ease);
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn-gold{ background:var(--gold); color:#fff; }
+.btn-gold:hover{ background:#B78D42; }
+.btn-navy{ background:var(--navy); color:var(--paper); }
+.btn-navy:hover{ background:#052B5A; }
+.btn-ghost{ border-color:rgba(228,211,174,.45); color:var(--paper); }
+.btn-ghost:hover{ border-color:var(--gold-bright); background:rgba(164,126,57,.14); }
+.btn-outline{ border-color:rgba(1,31,68,.28); color:var(--navy); }
+.btn-outline:hover{ border-color:var(--gold); color:var(--gold); }
+.btn-block{ width:100%; }
+.btn-sub{
+  font-size:11px; font-weight:600; letter-spacing:.14em;
+  color:var(--gold-bright); margin-right:4px;
+}
+
+/* =========================================================
+   헤더
+   ========================================================= */
+.site-header{
+  position:fixed; inset:0 0 auto 0; z-index:100; height:var(--hdr);
+  transition:background .3s var(--ease), box-shadow .3s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.header-inner{ display:flex; align-items:center; justify-content:space-between; height:var(--hdr); }
+.brand{ position:relative; display:block; height:52px; }
+.brand img{ height:52px; width:auto; transition:opacity .3s var(--ease); }
+.brand .brand-dark{ position:absolute; inset:0; opacity:0; }
+.site-header.is-solid{
+  background:rgba(250,246,237,.94);
+  backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom-color:rgba(164,126,57,.28);
+}
+.site-header.is-solid .brand-light{ opacity:0; }
+.site-header.is-solid .brand-dark{ opacity:1; }
+
+.nav{ display:flex; align-items:center; gap:30px; }
+.nav a{
+  position:relative; font-size:15px; font-weight:500; color:rgba(250,246,237,.86);
+  transition:color .2s var(--ease);
+}
+.nav a::after{
+  content:''; position:absolute; left:0; right:100%; bottom:-6px; height:1px;
+  background:var(--gold-bright); transition:right .3s var(--ease);
+}
+.nav a:hover{ color:var(--paper); }
+.nav a:hover::after{ right:0; }
+.nav .nav-cta{
+  padding:10px 20px; border:1px solid rgba(228,211,174,.5); border-radius:2px;
+  font-weight:600; color:var(--paper);
+}
+.nav .nav-cta::after{ display:none; }
+.nav .nav-cta:hover{ background:var(--gold); border-color:var(--gold); }
+.site-header.is-solid .nav a{ color:var(--navy); }
+.site-header.is-solid .nav .nav-cta{ background:var(--navy); color:var(--paper); border-color:var(--navy); }
+.site-header.is-solid .nav .nav-cta:hover{ background:var(--gold); border-color:var(--gold); }
+
+.nav-toggle{
+  display:none; width:44px; height:44px; background:none; border:0; cursor:pointer;
+  flex-direction:column; justify-content:center; align-items:flex-end; gap:6px;
+}
+.nav-toggle span{
+  display:block; width:24px; height:1.5px; background:var(--paper);
+  transition:transform .3s var(--ease), opacity .2s var(--ease), width .3s var(--ease);
+}
+.site-header.is-solid .nav-toggle span{ background:var(--navy); }
+
+/* =========================================================
+   히어로
+   ========================================================= */
+.hero{
+  position:relative; overflow:hidden; background:var(--navy-deep); color:var(--paper);
+  padding:calc(var(--hdr) + 72px) 0 84px;
+}
+.hero::before{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(120% 90% at 18% 0%, #06305F 0%, var(--navy-deep) 62%);
+}
+.hero-compass{
+  position:absolute; top:50%; right:-5%; width:min(900px,92vw); aspect-ratio:1;
+  transform:translateY(-50%); color:var(--gold-bright); opacity:.2;
+  animation:spin 120s linear infinite;
+}
+.hero-compass svg{ width:100%; height:100%; }
+@keyframes spin{ to{ transform:translateY(-50%) rotate(360deg); } }
+
+.hero-inner{
+  position:relative; display:grid; grid-template-columns:1.08fr .92fr;
+  gap:56px; align-items:center;
+}
+.hero-eyebrow{
+  display:flex; align-items:center; font-size:13px; font-weight:600;
+  letter-spacing:.12em; color:var(--gold-pale); margin-bottom:26px;
+}
+.hero-title{
+  font-size:clamp(36px,4.6vw,56px); line-height:1.26; letter-spacing:-.035em;
+  color:var(--paper);
+}
+.hero-title em{
+  font-style:normal; position:relative; color:var(--gold-bright);
+}
+.hero-title em::after{
+  content:''; position:absolute; left:0; right:0; bottom:.06em; height:1px;
+  background:rgba(201,164,100,.55);
+}
+.hero-lede{
+  max-width:37em; margin-top:28px; font-size:16.5px; line-height:1.95;
+  color:rgba(250,246,237,.76);
+}
+.hero-actions{ display:flex; flex-wrap:wrap; gap:12px; margin-top:40px; }
+
+.hero-portrait{ position:relative; margin:0; aspect-ratio:4/5; }
+.hero-portrait::before{
+  content:''; position:absolute; left:-16px; top:-16px; right:26px; bottom:26px;
+  border:1px solid rgba(201,164,100,.42); pointer-events:none; z-index:2;
+}
+.hero-portrait img{
+  width:100%; height:100%; object-fit:cover; object-position:50% 22%;
+  filter:saturate(.9) contrast(1.03); position:relative; z-index:1;
+}
+.hero-portrait::after{
+  content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:linear-gradient(to top, rgba(1,21,46,.92) 0%, rgba(1,21,46,0) 42%),
+             linear-gradient(to right, rgba(1,21,46,.55) 0%, rgba(1,21,46,0) 34%);
+}
+.hero-portrait figcaption{
+  position:absolute; left:24px; bottom:22px; z-index:3;
+  font-size:14px; color:rgba(250,246,237,.8); letter-spacing:.02em;
+}
+.hero-portrait figcaption strong{
+  font-family:var(--display); font-size:21px; color:var(--paper); margin-right:8px;
+}
+
+/* =========================================================
+   기준선 스트립
+   ========================================================= */
+.bearing{ background:var(--navy); color:var(--paper); border-top:1px solid var(--navy-line); }
+.bearing-grid{
+  display:grid; grid-template-columns:repeat(4,1fr);
+}
+.bearing-item{
+  padding:30px 26px 30px 0; position:relative;
+}
+.bearing-item + .bearing-item{ padding-left:34px; }
+.bearing-item + .bearing-item::before{
+  content:''; position:absolute; left:0; top:34px; width:14px; height:5px;
+  background:var(--gold); clip-path:polygon(0 50%, 50% 18%, 100% 50%, 50% 82%);
+}
+.bearing-k{ display:block; font-size:15px; font-weight:600; color:var(--paper); }
+.bearing-v{ display:block; font-size:13.5px; color:rgba(250,246,237,.58); margin-top:4px; }
+
+/* =========================================================
+   섹션 공통
+   ========================================================= */
+.section{ padding:110px 0; scroll-margin-top:var(--hdr); }
+.sec-head{ max-width:760px; margin-bottom:56px; }
+.eyebrow{
+  display:flex; align-items:center; font-size:12.5px; font-weight:700;
+  letter-spacing:.18em; color:var(--gold); margin-bottom:18px;
+}
+.eyebrow-light{ color:var(--gold-bright); }
+.sec-title{ font-size:clamp(28px,3.4vw,42px); color:var(--navy); }
+.sec-lede{ margin-top:18px; font-size:16px; color:var(--ink-mute); }
+
+/* ---------- 사무소 소개 ---------- */
+.section-about{ position:relative; }
+.about-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:64px; }
+.about-lede p{ font-size:17px; line-height:2.05; color:#33383F; }
+.about-lede p + p{ margin-top:22px; }
+.about-lede strong{ color:var(--navy); font-weight:600; }
+.about-points li{
+  padding:24px 0; border-top:1px solid rgba(1,31,68,.14);
+}
+.about-points li:last-child{ border-bottom:1px solid rgba(1,31,68,.14); }
+.about-points h3{ font-size:19px; color:var(--navy); margin-bottom:8px; }
+.about-points p{ font-size:15px; color:var(--ink-mute); line-height:1.85; }
+
+/* 사무소 소개 — 상호 풀이 */
+.about-note{
+  display:flex; gap:20px; align-items:flex-start;
+  margin-top:38px; padding-top:28px; border-top:1px solid rgba(1,31,68,.14);
+}
+.about-note img{ width:62px; flex:none; opacity:.92; }
+.about-note dt{
+  font-family:var(--display); font-size:19px; font-weight:700; color:var(--navy); margin-bottom:6px;
+}
+.about-note dd{ font-size:14.5px; line-height:1.85; color:var(--ink-mute); }
+
+/* ---------- 업무분야 ---------- */
+.section-services{ background:var(--paper-2); }
+.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.card{
+  background:var(--paper); border:1px solid rgba(1,31,68,.13); padding:38px 32px 34px;
+  transition:border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.card:hover{
+  border-color:var(--gold); transform:translateY(-4px);
+  box-shadow:0 18px 40px -28px rgba(1,31,68,.55);
+}
+.card-title{
+  font-size:23px; color:var(--navy); padding-bottom:16px; margin-bottom:16px;
+  border-bottom:1px solid rgba(164,126,57,.35);
+}
+.card-desc{ font-size:14.5px; color:var(--ink-mute); line-height:1.85; min-height:3.7em; }
+.card-list{ margin-top:20px; }
+.card-list li{
+  position:relative; padding-left:18px; font-size:14.5px; color:#3A4049; line-height:1.7;
+}
+.card-list li + li{ margin-top:9px; }
+.card-list li::before{
+  content:''; position:absolute; left:0; top:.72em; width:10px; height:4px;
+  background:var(--gold); clip-path:polygon(0 50%, 50% 18%, 100% 50%, 50% 82%);
+}
+
+/* ---------- 상담 절차 ---------- */
+.steps{
+  display:grid; grid-template-columns:repeat(5,1fr); gap:0;
+  border-top:1px solid rgba(164,126,57,.4);
+}
+.step{ position:relative; padding:34px 24px 0 0; }
+.step::before{
+  content:''; position:absolute; left:0; top:-4px; width:8px; height:8px;
+  background:var(--gold); border-radius:50%;
+}
+.step + .step{ padding-left:24px; }
+.step-no{
+  display:block; font-family:var(--display); font-size:15px; font-weight:700;
+  letter-spacing:.1em; color:var(--gold); margin-bottom:12px;
+}
+.step h3{ font-size:19px; color:var(--navy); margin-bottom:10px; }
+.step p{ font-size:14.5px; color:var(--ink-mute); line-height:1.8; }
+
+/* ---------- 대표세무사 ---------- */
+.section-profile{ background:var(--navy); color:var(--paper); }
+.profile-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:64px; align-items:center; }
+.profile-photo{ position:relative; margin:0; aspect-ratio:4/5; }
+.profile-photo::before{
+  content:''; position:absolute; left:18px; top:18px; right:-18px; bottom:-18px;
+  border:1px solid rgba(201,164,100,.45);
+}
+.profile-photo img{
+  position:relative; width:100%; height:100%; object-fit:cover; object-position:50% 18%;
+  filter:saturate(.92);
+}
+.profile-name{ font-size:clamp(30px,3.6vw,42px); color:var(--paper); }
+.profile-name span{ font-size:.5em; font-family:var(--body); font-weight:500; color:var(--gold-bright); margin-left:12px; }
+.profile-quote{
+  margin-top:24px; padding-left:22px; border-left:2px solid var(--gold);
+  font-family:var(--display); font-size:19px; line-height:1.95; color:rgba(250,246,237,.9);
+}
+.profile-cv{ margin:34px 0 38px; }
+.profile-cv li{
+  display:grid; grid-template-columns:44px 1fr; gap:16px;
+  padding:14px 0; border-bottom:1px solid rgba(228,211,174,.16); font-size:15px;
+}
+.cv-k{
+  color:var(--gold-bright); font-family:var(--display); font-weight:700;
+  font-size:16px; letter-spacing:.02em; padding-top:1px;
+}
+.cv-v{ color:rgba(250,246,237,.82); }
+
+/* ---------- 상담 문의 ---------- */
+.section-contact{ background:var(--paper-2); }
+.contact-grid{ display:grid; grid-template-columns:1.25fr .75fr; gap:24px; align-items:start; }
+.form{ background:var(--paper); border:1px solid rgba(1,31,68,.13); padding:40px; }
+.field{ margin-bottom:20px; }
+.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.field label{
+  display:block; font-size:13.5px; font-weight:600; color:var(--navy); margin-bottom:8px;
+}
+.field label em{ font-style:normal; font-weight:400; color:var(--ink-mute); }
+.field input,.field select,.field textarea{
+  width:100%; padding:14px 16px; font-family:inherit; font-size:15px; color:var(--ink);
+  background:var(--white); border:1px solid rgba(1,31,68,.18); border-radius:2px;
+  transition:border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.field textarea{ resize:vertical; line-height:1.75; }
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(164,126,57,.14);
+}
+.field input::placeholder,.field textarea::placeholder{ color:#A9AFB9; }
+.field-check{ display:flex; align-items:flex-start; gap:10px; margin:4px 0 24px; }
+.field-check input{ width:17px; height:17px; margin-top:5px; accent-color:var(--gold); flex:none; }
+.field-check label{ font-size:14px; color:var(--ink-mute); line-height:1.6; }
+.field-check a{ color:var(--navy); text-decoration:underline; text-underline-offset:2px; }
+.form-status{ margin-top:14px; font-size:14px; min-height:1.4em; line-height:1.7; }
+.hp{ position:absolute !important; left:-9999px; width:1px; height:1px; opacity:0; }
+.form-status.ok{ color:#1D6B45; }
+.form-status.err{ color:#A3342C; }
+
+.contact-info{ background:var(--navy); color:var(--paper); padding:40px 36px; }
+.contact-info h3{
+  font-size:21px; color:var(--paper); padding-bottom:18px; margin-bottom:6px;
+  border-bottom:1px solid rgba(228,211,174,.2);
+}
+.info-list div{
+  display:grid; grid-template-columns:78px 1fr; gap:12px; padding:16px 0;
+  border-bottom:1px solid rgba(228,211,174,.12); font-size:15px;
+}
+.info-list dt{ color:var(--gold-bright); font-size:13.5px; font-weight:600; padding-top:2px; }
+.info-list dd{ color:rgba(250,246,237,.9); }
+.info-list a:hover{ color:var(--gold-bright); }
+.info-list .dim{ color:rgba(250,246,237,.5); font-size:13.5px; }
+.info-note{ margin-top:22px; font-size:13.5px; line-height:1.8; color:rgba(250,246,237,.6); }
+
+/* ---------- 오시는 길 ---------- */
+.loc-grid{
+  display:grid; grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);
+  gap:48px; align-items:start;
+}
+.loc-map{
+  display:block; padding:14px 14px 0; background:var(--paper-2);
+  border:1px solid rgba(1,31,68,.13);
+  transition:border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.loc-map:hover{ border-color:var(--gold); box-shadow:0 20px 44px -32px rgba(1,31,68,.6); }
+.loc-map img{ width:100%; height:auto; border:1px solid rgba(1,31,68,.08); }
+.loc-map-cta{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 0 16px; font-size:14px; font-weight:600; color:var(--navy);
+}
+.loc-map-cta::before{
+  content:''; width:14px; height:5px; background:var(--gold);
+  clip-path:polygon(0 50%, 50% 18%, 100% 50%, 50% 82%);
+}
+.loc-map:hover .loc-map-cta{ color:var(--gold); }
+
+.loc-item + .loc-item{ margin-top:24px; }
+.loc-item h3{ font-size:18px; color:var(--navy); margin-bottom:8px; }
+.loc-item p{ font-size:15px; color:var(--ink-mute); line-height:1.85; }
+.loc-item strong{ color:var(--navy); font-weight:600; }
+.loc-item .dim{ color:#9AA0AB; font-size:13.5px; }
+
+.loc-links{ display:flex; flex-wrap:wrap; gap:9px; margin-top:30px; }
+.loc-links .btn{ padding:12px 20px; font-size:14px; }
+
+/* =========================================================
+   푸터
+   ========================================================= */
+.site-footer{ background:var(--navy-deep); color:rgba(250,246,237,.65); padding:64px 0 100px; }
+.footer-inner{ display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:start; }
+.footer-brand img{ height:46px; width:auto; }
+.footer-brand p{
+  margin-top:10px; font-size:11px; letter-spacing:.2em; color:rgba(201,164,100,.75);
+}
+.footer-meta p{ font-size:13.5px; line-height:1.9; }
+.footer-links{ margin-top:12px; }
+.footer-links a{ color:var(--gold-bright); }
+.footer-links a:hover{ text-decoration:underline; }
+.footer-copy{ margin-top:16px; color:rgba(250,246,237,.35); font-size:12.5px; }
+
+/* =========================================================
+   모바일 하단 바
+   ========================================================= */
+.mobile-bar{ display:none; }
+
+/* =========================================================
+   등장 애니메이션
+   ========================================================= */
+.reveal{ opacity:0; transform:translateY(22px); }
+.reveal.is-in{
+  opacity:1; transform:none;
+  transition:opacity .7s var(--ease), transform .7s var(--ease);
+}
+
+/* =========================================================
+   반응형
+   ========================================================= */
+@media (max-width:1024px){
+  .hero-inner{ grid-template-columns:1fr; gap:44px; }
+  .hero-portrait{ max-width:420px; }
+  .about-grid,.profile-grid,.contact-grid{ grid-template-columns:1fr; gap:40px; }
+  .loc-grid{ grid-template-columns:1fr; gap:36px; }
+  .cards{ grid-template-columns:repeat(2,1fr); }
+  .steps{ grid-template-columns:repeat(2,1fr); gap:0 24px; }
+  .step{ padding-right:0; border-top:1px solid rgba(164,126,57,.25); margin-top:-1px; }
+  .step + .step{ padding-left:0; }
+  .steps{ border-top:0; }
+  .bearing-grid{ grid-template-columns:repeat(2,1fr); }
+  .bearing-item{ padding:22px 20px 22px 0; }
+  .bearing-item:nth-child(2n){ padding-left:26px; }
+  .bearing-item:nth-child(2n+1)::before{ display:none; }
+  .profile-photo{ max-width:400px; }
+  .profile-photo::before{ right:0; }
+}
+
+@media (max-width:820px){
+  :root{ --hdr:72px; }
+  .brand,.brand img{ height:40px; }
+  .nav{
+    position:fixed; inset:var(--hdr) 0 auto 0; flex-direction:column; align-items:stretch;
+    gap:0; background:var(--navy); padding:8px 0 20px;
+    transform:translateY(-140%); transition:transform .38s var(--ease);
+    box-shadow:0 20px 40px -24px rgba(0,0,0,.6);
+  }
+  .nav.is-open{ transform:none; }
+  .nav a{ padding:15px 24px; color:rgba(250,246,237,.9); border-bottom:1px solid rgba(228,211,174,.1); }
+  .nav a::after{ display:none; }
+  .nav .nav-cta{ margin:16px 24px 0; text-align:center; border-color:var(--gold); background:var(--gold); }
+  .nav-toggle{ display:flex; }
+  .nav-toggle.is-open span:nth-child(1){ transform:translateY(7.5px) rotate(45deg); }
+  .nav-toggle.is-open span:nth-child(2){ opacity:0; width:0; }
+  .nav-toggle.is-open span:nth-child(3){ transform:translateY(-7.5px) rotate(-45deg); }
+  .site-header.is-solid .nav a{ color:rgba(250,246,237,.9); }
+
+  .hero{ padding:calc(var(--hdr) + 52px) 0 64px; }
+  .hero-compass{ right:-32%; opacity:.12; }
+  .hero-lede{ font-size:15.5px; line-height:1.9; }
+  .hero-actions .btn{ flex:1 1 auto; }
+  .section{ padding:76px 0; }
+  .sec-head{ margin-bottom:40px; }
+  .cards{ grid-template-columns:1fr; }
+  .loc-grid{ gap:30px; }
+  .loc-links{ margin-top:26px; }
+  .loc-links .btn{ flex:1 1 auto; }
+  .card{ padding:30px 26px; }
+  .card-desc{ min-height:0; }
+  .form{ padding:28px 22px; }
+  .field-row{ grid-template-columns:1fr; gap:0; }
+  .field-row .field{ margin-bottom:20px; }
+  .contact-info{ padding:32px 24px; }
+  .footer-inner{ grid-template-columns:1fr; gap:28px; }
+  .site-footer{ padding:52px 0 110px; }
+
+  .mobile-bar{
+    position:fixed; left:0; right:0; bottom:0; z-index:120; display:grid;
+    grid-template-columns:1fr 1fr 1.3fr; background:var(--navy);
+    border-top:1px solid var(--navy-line);
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .mobile-bar a{
+    padding:16px 8px; text-align:center; font-size:14px; font-weight:600;
+    color:rgba(250,246,237,.86); border-right:1px solid rgba(228,211,174,.14);
+  }
+  .mobile-bar a:last-child{ border-right:0; }
+  .mobile-bar .mb-primary{ background:var(--gold); color:#fff; }
+}
+
+@media (max-width:520px){
+  .wrap{ padding:0 18px; }
+  .bearing-grid{ grid-template-columns:1fr; }
+  .bearing-item{ padding:16px 0 !important; border-bottom:1px solid rgba(228,211,174,.12); }
+  .bearing-item::before{ display:none !important; }
+  .steps{ grid-template-columns:1fr; }
+  .hero-portrait::before{ right:16px; bottom:16px; }
+  .profile-cv li{ grid-template-columns:1fr; gap:2px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important;
+                        transition-duration:.001ms !important; }
+  .reveal{ opacity:1; transform:none; }
+}
+
+@media print{
+  .site-header,.mobile-bar,.hero-compass{ display:none; }
+  body{ background:#fff; }
+}
+
+/* =========================================================
+   내부 페이지 (개인정보처리방침 등)
+   ========================================================= */
+.page-header{
+  background:var(--navy); color:var(--paper);
+  padding:calc(var(--hdr) + 72px) 0 60px;
+}
+.page-header .sec-title{ color:var(--paper); }
+.page-header .eyebrow{ color:var(--gold-bright); }
+.legal{ padding:72px 0 110px; }
+.legal-body{ max-width:820px; }
+.legal-body h2{
+  font-size:22px; color:var(--navy); margin:44px 0 14px;
+  padding-bottom:12px; border-bottom:1px solid rgba(164,126,57,.35);
+}
+.legal-body h2:first-child{ margin-top:0; }
+.legal-body p{ font-size:15.5px; line-height:1.95; color:#3A4049; margin-bottom:12px; }
+.legal-body ul{ margin:8px 0 16px; }
+.legal-body ul li{
+  position:relative; padding-left:18px; font-size:15px; line-height:1.9; color:#3A4049;
+}
+.legal-body ul li::before{
+  content:''; position:absolute; left:0; top:.82em; width:10px; height:4px;
+  background:var(--gold); clip-path:polygon(0 50%, 50% 18%, 100% 50%, 50% 82%);
+}
+.legal-body table{ width:100%; border-collapse:collapse; margin:12px 0 18px; font-size:14.5px; }
+.legal-body th,.legal-body td{
+  border:1px solid rgba(1,31,68,.14); padding:12px 14px; text-align:left; vertical-align:top;
+}
+.legal-body th{ background:var(--paper-2); color:var(--navy); font-weight:600; }
+.legal-note{ margin-top:36px; font-size:14px; color:var(--ink-mute); }
+
+</style>
 <style>
   .nf{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
        gap:22px; text-align:center; background:var(--navy-deep); color:var(--paper); padding:40px 24px; }
@@ -19,7 +580,7 @@
 </head>
 <body>
   <div class="nf">
-    <img src="/assets/img/mark-light.png" alt="세무회계 표선">
+    <img src="data:image/png;base64,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" alt="세무회계 표선">
     <h1>찾으시는 페이지가 없습니다</h1>
     <p>주소가 변경되었거나 삭제된 페이지입니다.<br>홈으로 이동하시거나 010-8287-3549로 문의해 주세요.</p>
     <a class="btn btn-gold" href="/">홈으로 이동</a>
