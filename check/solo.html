@@ -146,23 +146,19 @@
   .btn:hover{filter:brightness(1.08);}
   .btn:active{transform:translateY(1px);}
   .btn:disabled{background:var(--rule-hard); cursor:not-allowed;}
-  .btn-sub{
-    display:block; width:100%; margin-top:9px; padding:13px 20px;
-    background:none; color:var(--ink-soft); border:1px solid var(--rule-hard);
-    font:inherit; font-size:14px; cursor:pointer; text-align:center;
+  .result-wrap{margin-top:18px; display:none;}
+  .result-label{
+    display:block; font-family:'JetBrains Mono',monospace; font-size:10.5px;
+    letter-spacing:.1em; color:var(--muted); margin-bottom:7px;
   }
-  .btn-sub:hover{border-color:var(--ink); color:var(--ink);}
-  .sent-msg{
-    margin-top:14px; padding:13px 16px; background:var(--seal-tint);
-    border-left:3px solid var(--seal); font-size:14.5px; color:var(--ink); display:none;
-  }
-  .fallback{margin-top:14px; display:none;}
-  .fallback textarea{
-    width:100%; min-height:120px; padding:13px 15px;
+  .result-wrap textarea{
+    width:100%; min-height:118px; padding:14px 16px;
     border:1px solid var(--rule-hard); background:var(--paper);
-    font:inherit; font-size:14px; line-height:1.6; resize:vertical; color:var(--ink);
+    font:inherit; font-size:14px; line-height:1.65; resize:vertical; color:var(--ink);
   }
-  .fallback p{font-size:13.5px; color:var(--muted); margin:8px 0 0;}
+  .send-hint{
+    margin:10px 0 0 !important; font-size:13px; color:var(--muted); line-height:1.6;
+  }
 
   .cta{margin-top:40px; border-top:2px solid var(--ink); padding-top:26px;}
   .cta h3{font-family:'Gowun Batang',serif; font-size:20px; margin:0 0 12px;}
@@ -372,32 +368,13 @@
     <p>어디서 얼마나 새고 있는지, 그중 지금 당장 손댈 수 있는 게 뭔지.</p>
     <p><b>여기까지는 비용 없습니다.</b></p>
 
+    <div class="result-wrap" id="resultWrap">
+      <label class="result-label" for="resultText">보낼 내용</label>
+      <textarea id="resultText" readonly></textarea>
+    </div>
+
     <button class="btn" id="sendBtn" type="button" disabled>먼저 체크부터 해주세요</button>
-    <button class="btn-sub" id="copyBtn" type="button">결과만 복사하기</button>
-
-    <div class="sent-msg" id="sentMsg"></div>
-
-    <div class="fallback" id="fallback">
-      <textarea id="fallbackText" readonly></textarea>
-      <p>위 내용을 길게 눌러 복사한 뒤 보내주시면 됩니다.</p>
-    </div>
-  </div>
-
-  <section class="cta">
-    <h3>참고로, 이 번호는 특히 급합니다</h3>
-    <ul class="cta-list">
-      <li><b>1번, 10번</b> — 오늘 30분이면 끝납니다. 제일 먼저 하시면 되는 것들.</li>
-      <li><b>3번, 4번</b> — 지나간 것도 되돌릴 수 있는 기간이 있습니다. 이게 제일 급합니다.</li>
-      <li><b>6번</b> — 다른 것보다 이것부터. 미루면 선택지가 줄어듭니다.</li>
-      <li><b>11번, 12번</b> — 신고 시즌 말고 지금 보셔야 합니다.</li>
-    </ul>
-
-    <div class="signature">
-      <p class="sig-name">독종 세무사 전민우
-        <span>국가기관과 싸워 이긴 세무사 · 사건번호 2023-30621<br><a href="https://pyoseontax.com" style="color:#7A7E85;">세무회계 표선</a> · 역삼역 2번 출구 도보 5분</span>
-      </p>
-      <div class="seal">독종<br>세무사</div>
-    </div>
+    <p class="send-hint" id="sendHint">버튼을 누르면 위 내용이 자동으로 복사되고 카카오톡이 열립니다. 붙여넣기만 하시면 됩니다.</p>
   </section>
 
   <p class="disclaimer">
@@ -420,8 +397,9 @@ var KAKAO_URL = "http://pf.kakao.com/_gqmnX/chat";
   var items = Array.prototype.slice.call(document.querySelectorAll('.item'));
   var countEl=document.getElementById('count'), barEl=document.getElementById('bar');
   var gradeEl=document.getElementById('grade'), vA=document.getElementById('verdictA'), vB=document.getElementById('verdictB');
-  var sendBtn=document.getElementById('sendBtn'), copyBtn=document.getElementById('copyBtn');
-  var sentMsg=document.getElementById('sentMsg'), fallback=document.getElementById('fallback'), fallbackText=document.getElementById('fallbackText');
+  var sendBtn=document.getElementById('sendBtn');
+  var resultWrap=document.getElementById('resultWrap'), resultText=document.getElementById('resultText');
+  var sendHint=document.getElementById('sendHint');
 
   var VERDICTS = [
     { max:0, grade:'아직 체크 전이다.',
@@ -464,56 +442,42 @@ var KAKAO_URL = "http://pf.kakao.com/_gqmnX/chat";
     vB.textContent = v.b;
     vB.style.display = v.b ? '' : 'none';
 
-    sendBtn.disabled = (n === 0);
-    sendBtn.textContent = (n === 0)
-      ? '먼저 체크부터 해주세요'
-      : '결과 보내기 (' + n + '개 체크)';
+    var has = n > 0;
+    sendBtn.disabled = !has;
+    sendBtn.textContent = has ? ('결과 보내기 (' + n + '개 체크)') : '먼저 체크부터 해주세요';
+    resultWrap.style.display = has ? 'block' : 'none';
+    resultText.value = has ? summaryText() : '';
   }
 
-  function copyText(text){
+  function copyNow(text){
+    var ok=false;
+    try{
+      var ta=document.createElement('textarea');
+      ta.value=text; ta.setAttribute('readonly','');
+      ta.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;';
+      document.body.appendChild(ta);
+      if(/ipad|iphone|ipod/i.test(navigator.userAgent)){
+        var r=document.createRange(); r.selectNodeContents(ta);
+        var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        ta.setSelectionRange(0,999999);
+      } else { ta.select(); }
+      ok=document.execCommand('copy');
+      document.body.removeChild(ta);
+    }catch(e){}
     if(navigator.clipboard && window.isSecureContext){
-      return navigator.clipboard.writeText(text);
+      try{ navigator.clipboard.writeText(text); ok=true; }catch(e){}
     }
-    return new Promise(function(resolve,reject){
-      try{
-        var ta=document.createElement('textarea');
-        ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
-        document.body.appendChild(ta); ta.select();
-        var ok=document.execCommand('copy');
-        document.body.removeChild(ta);
-        ok ? resolve() : reject();
-      }catch(e){ reject(e); }
-    });
-  }
-
-  function showFallback(text){
-    fallbackText.value = text;
-    fallback.style.display='block';
-    sentMsg.style.display='none';
-  }
-
-  function notify(msg){
-    sentMsg.textContent = msg;
-    sentMsg.style.display='block';
-    fallback.style.display='none';
+    return ok;
   }
 
   sendBtn.addEventListener('click', function(){
-    var text = summaryText();
-    copyText(text).then(function(){
-      notify('결과가 복사됐습니다. 카톡이 열리면 붙여넣기만 하시면 됩니다. 업종·연매출까지 채워주시면 더 정확합니다.');
-      window.open(KAKAO_URL, '_blank', 'noopener');
-    }).catch(function(){
-      showFallback(text);
-      window.open(KAKAO_URL, '_blank', 'noopener');
-    });
-  });
-
-  copyBtn.addEventListener('click', function(){
-    var text = summaryText();
-    copyText(text).then(function(){
-      notify('복사됐습니다. 카톡이나 메시지로 붙여넣어 보내주세요.');
-    }).catch(function(){ showFallback(text); });
+    if(sendBtn.disabled) return;
+    var ok = copyNow(resultText.value);
+    sendHint.textContent = ok
+      ? '복사됐습니다. 카카오톡이 열리면 붙여넣기만 하시면 됩니다.'
+      : '복사가 안 됐습니다. 위 내용을 길게 눌러 직접 복사한 뒤 보내주세요.';
+    sendBtn.textContent = '카카오톡 여는 중…';
+    setTimeout(function(){ window.location.href = KAKAO_URL; }, 180);
   });
 
   function toggle(el){
@@ -528,7 +492,7 @@ var KAKAO_URL = "http://pf.kakao.com/_gqmnX/chat";
   });
   document.getElementById('reset').addEventListener('click', function(){
     items.forEach(function(el){ el.setAttribute('aria-checked','false'); });
-    sentMsg.style.display='none'; fallback.style.display='none';
+    sendHint.textContent = '버튼을 누르면 위 내용이 자동으로 복사되고 카카오톡이 열립니다. 붙여넣기만 하시면 됩니다.';
     render();
   });
 
