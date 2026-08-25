@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인사업자·프리랜서 세금 자가진단 12문항 | 독종 세무사 전민우</title>
+<meta name="description" content="개인사업자·프리랜서를 위한 세금 누수 자가진단. 12문항 체크 3분.">
+<meta property="og:title" content="혼자 하다가 놓치고 있는 세금 (개인사업자·프리랜서)">
+<meta property="og:description" content="12문항 체크. 3분이면 끝. 세무 지식 없어도 됩니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  :root{
+    --paper:#FCFBF9; --paper-band:#EFECE6;
+    --ink:#16181B; --ink-soft:#4A4E54; --muted:#7A7E85;
+    --rule:#D6D3CC; --rule-hard:#B4B0A7;
+    --seal:#B01B2E; --seal-tint:#FAF0EF;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth;}
+  body{
+    margin:0; background:#E8E6E1; color:var(--ink);
+    font-family:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    font-size:16px; line-height:1.7; word-break:keep-all; padding:32px 16px 80px;
+  }
+  .sheet{
+    max-width:760px; margin:0 auto; background:var(--paper);
+    border:1px solid var(--rule-hard);
+    box-shadow:0 1px 0 rgba(0,0,0,.04), 0 18px 48px -24px rgba(0,0,0,.28);
+    padding:56px 56px 48px;
+  }
+  .docmeta{
+    display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em;
+    color:var(--muted); text-transform:uppercase;
+    border-bottom:1px solid var(--rule); padding-bottom:10px;
+  }
+  .kind{
+    display:block; text-align:center; margin:28px 0 0;
+    font-family:'Gowun Batang',serif; font-size:13px;
+    letter-spacing:.42em; text-indent:.42em; color:var(--seal);
+  }
+  .doctitle{
+    font-family:'Gowun Batang',serif; font-weight:700; text-align:center;
+    margin:12px 0 0; font-size:clamp(28px,5.2vw,40px);
+    letter-spacing:-.01em; line-height:1.32;
+  }
+  .doctitle .em{color:var(--seal); box-shadow:inset 0 -.42em 0 var(--seal-tint);}
+  .docsub{text-align:center; margin:14px auto 0; max-width:47ch; color:var(--ink-soft); font-size:15px;}
+
+  .switch{text-align:center; margin:18px 0 0; font-size:13.5px; color:var(--muted);}
+  .switch a{color:var(--seal); text-underline-offset:3px;}
+
+  .howto{
+    margin:30px 0 0; background:var(--paper-band); border-left:3px solid var(--ink);
+    padding:14px 18px; font-size:14.5px; color:var(--ink-soft);
+  }
+  .howto b{color:var(--ink);}
+
+  .section{margin-top:46px;}
+  .section-head{display:flex; align-items:baseline; gap:12px; border-bottom:2px solid var(--ink); padding-bottom:8px;}
+  .section-key{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:12px;
+    letter-spacing:.1em; color:var(--paper); background:var(--ink); padding:3px 8px;
+  }
+  .section-name{font-family:'Gowun Batang',serif; font-weight:700; font-size:20px;}
+  .section-note{margin-left:auto; font-size:12.5px; color:var(--muted); white-space:nowrap;}
+
+  .item{
+    display:grid; grid-template-columns:34px 1fr 30px; gap:0 14px; align-items:start;
+    padding:20px 10px 20px 4px; border-bottom:1px dotted var(--rule);
+    cursor:pointer; transition:background .16s ease;
+  }
+  .item:hover{background:#F5F3EF;}
+  .item:focus-visible{outline:2px solid var(--seal); outline-offset:-2px;}
+  .num{
+    font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:700;
+    color:var(--muted); padding-top:3px; font-variant-numeric:tabular-nums;
+  }
+  .q{font-size:16.5px; font-weight:600; line-height:1.55; margin:0;}
+  .why{
+    margin:9px 0 0; font-size:14.5px; color:var(--ink-soft);
+    line-height:1.66; padding-left:13px; border-left:2px solid var(--rule);
+  }
+  .why .tag{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.08em;
+    color:var(--seal); display:block; margin-bottom:3px; font-weight:700;
+  }
+  .box{
+    width:26px; height:26px; border:1.5px solid var(--rule-hard);
+    background:#fff; margin-top:2px; position:relative; flex:none;
+  }
+  .box::after{
+    content:""; position:absolute; inset:0; background:var(--seal);
+    opacity:0; transform:scale(.4);
+    transition:opacity .14s ease, transform .14s ease;
+    clip-path:polygon(16% 52%, 8% 62%, 38% 90%, 92% 22%, 82% 13%, 37% 70%);
+  }
+  .item[aria-checked="true"] .box{border-color:var(--seal);}
+  .item[aria-checked="true"] .box::after{opacity:1; transform:scale(1);}
+  .item[aria-checked="true"]{background:var(--seal-tint);}
+  .item[aria-checked="true"] .num{color:var(--seal);}
+
+  .tally{
+    margin-top:52px; border:1px solid var(--rule-hard); background:#fff;
+    padding:22px 26px; display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+  }
+  .tally-label{font-family:'Gowun Batang',serif; font-size:15px; letter-spacing:.3em; color:var(--ink-soft);}
+  .tally-count{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:44px;
+    line-height:1; font-variant-numeric:tabular-nums;
+  }
+  .tally-count small{font-size:17px; color:var(--muted); font-weight:400; margin-left:2px;}
+  .tally-bar{flex:1; min-width:180px; height:8px; background:var(--paper-band); position:relative; overflow:hidden;}
+  .tally-bar i{position:absolute; inset:0 100% 0 0; background:var(--seal); transition:right .32s cubic-bezier(.2,.7,.3,1);}
+  .reset{
+    background:none; border:1px solid var(--rule-hard); font:inherit;
+    font-size:12.5px; color:var(--muted); padding:6px 12px; cursor:pointer;
+  }
+  .reset:hover{border-color:var(--ink); color:var(--ink);}
+
+  .verdict{margin-top:22px; border:2px solid var(--seal); padding:30px 30px 28px; background:#fff;}
+  .verdict-h{
+    font-family:'Gowun Batang',serif; font-weight:700; font-size:19px;
+    letter-spacing:.65em; text-indent:.65em; text-align:center; margin:0 0 20px;
+  }
+  .verdict-grade{
+    font-family:'Gowun Batang',serif; font-weight:700;
+    font-size:clamp(21px,3.6vw,27px); line-height:1.45; margin:0 0 12px;
+  }
+  .verdict-body{margin:0; font-size:15.5px; color:var(--ink-soft); line-height:1.72;}
+  .verdict-body + .verdict-body{margin-top:10px;}
+
+  .send{margin-top:26px; border:1px solid var(--rule-hard); background:#fff; padding:28px 30px;}
+  .send h3{font-family:'Gowun Batang',serif; font-size:20px; margin:0 0 10px;}
+  .send p{margin:0 0 6px; font-size:15px; color:var(--ink-soft);}
+  .btn{
+    display:block; width:100%; margin-top:18px; padding:17px 20px;
+    background:var(--seal); color:#fff; border:none;
+    font:inherit; font-size:17px; font-weight:700; letter-spacing:-.01em;
+    cursor:pointer; text-align:center; text-decoration:none;
+    transition:filter .15s ease, transform .1s ease;
+  }
+  .btn:hover{filter:brightness(1.08);}
+  .btn:active{transform:translateY(1px);}
+  .btn:disabled{background:var(--rule-hard); cursor:not-allowed;}
+  .btn-sub{
+    display:block; width:100%; margin-top:9px; padding:13px 20px;
+    background:none; color:var(--ink-soft); border:1px solid var(--rule-hard);
+    font:inherit; font-size:14px; cursor:pointer; text-align:center;
+  }
+  .btn-sub:hover{border-color:var(--ink); color:var(--ink);}
+  .sent-msg{
+    margin-top:14px; padding:13px 16px; background:var(--seal-tint);
+    border-left:3px solid var(--seal); font-size:14.5px; color:var(--ink); display:none;
+  }
+  .fallback{margin-top:14px; display:none;}
+  .fallback textarea{
+    width:100%; min-height:120px; padding:13px 15px;
+    border:1px solid var(--rule-hard); background:var(--paper);
+    font:inherit; font-size:14px; line-height:1.6; resize:vertical; color:var(--ink);
+  }
+  .fallback p{font-size:13.5px; color:var(--muted); margin:8px 0 0;}
+
+  .cta{margin-top:40px; border-top:2px solid var(--ink); padding-top:26px;}
+  .cta h3{font-family:'Gowun Batang',serif; font-size:20px; margin:0 0 12px;}
+  .cta-list{margin:0; padding:0; list-style:none; font-size:15px;}
+  .cta-list li{padding:9px 0 9px 26px; position:relative; border-bottom:1px dotted var(--rule);}
+  .cta-list li::before{content:"→"; position:absolute; left:0; top:9px; color:var(--seal); font-weight:700;}
+
+  .signature{margin-top:32px; display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;}
+  .sig-name{font-family:'Gowun Batang',serif; font-size:17px; font-weight:700; margin:0;}
+  .sig-name span{
+    display:block; font-family:'Pretendard Variable',Pretendard,sans-serif;
+    font-size:13px; font-weight:400; color:var(--muted); margin-top:5px;
+  }
+  .seal{
+    width:74px; height:74px; border:2px solid var(--seal); border-radius:50%;
+    display:grid; place-content:center; text-align:center; color:var(--seal);
+    font-family:'Gowun Batang',serif; font-weight:700; font-size:14px;
+    line-height:1.3; opacity:.82; transform:rotate(-7deg); flex:none;
+  }
+  .disclaimer{
+    margin-top:32px; padding-top:16px; border-top:1px solid var(--rule);
+    font-size:12.5px; color:var(--muted); line-height:1.65;
+  }
+
+  @media (max-width:640px){
+    body{padding:14px 10px 60px;}
+    .sheet{padding:32px 22px 36px;}
+    .item{grid-template-columns:26px 1fr 26px; gap:0 10px; padding:17px 2px;}
+    .why{font-size:14px;}
+    .section-note{display:none;}
+    .verdict,.send{padding:24px 20px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important; scroll-behavior:auto;}}
+  @media print{
+    body{background:#fff; padding:0;}
+    .sheet{box-shadow:none; border:none; max-width:none; padding:24px;}
+    .reset,.send,.switch{display:none;}
+    .item,.verdict,.cta,.tally{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <div class="docmeta">
+    <span>독종세무사 · 세무진단</span>
+    <span>TAX-CHECK-12-P</span>
+  </div>
+
+  <span class="kind">개인사업자 · 프리랜서용</span>
+  <h1 class="doctitle">혼자 하다가<br><span class="em">놓치고 있는 세금</span></h1>
+  <p class="docsub">체크 12개. 3분이면 끝납니다.<br>세무 지식 없어도 됩니다. 아는 대로만 답하시면 됩니다.</p>
+  <p class="switch">법인 대표시라면 <a href="corp.html">이쪽으로 →</a></p>
+
+  <div class="howto">
+    <b>읽는 법.</b> 12문항 중 <b>‘내 얘기다’ 싶은 것만</b> 체크하세요. 확실하지 않으면 체크하시면 됩니다. 모르고 있다는 것 자체가 이미 답입니다.
+  </div>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="section-key">A</span>
+      <h2 class="section-name">지금 더 내고 있는 세금</h2>
+      <span class="section-note">이미 새고 있는 돈</span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">01</span>
+      <div>
+        <p class="q">사업에 쓰는 카드와 계좌를 홈택스에 등록해두지 않았다.</p>
+        <p class="why"><span class="tag">체크했다면</span>등록해두면 사업 관련 지출 자료가 자동으로 모입니다. <b>등록을 안 하면 그 지출들은 신고 때 그냥 빠집니다.</b> 쓴 돈은 그대로인데 인정만 못 받는 거예요. 5분이면 되는 일이고, 이 문진표에서 가장 손쉽게 해결되는 항목입니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">02</span>
+      <div>
+        <p class="q">노란우산공제나 연금저축을 안 하고 있다. 또는 뭔지 잘 모른다.</p>
+        <p class="why"><span class="tag">체크했다면</span>사업자가 쓸 수 있는 몇 안 되는 <b>확실한 소득공제 수단</b>인데, 아무도 알려주지 않아서 그냥 지나가는 경우가 많습니다. 특히 소득이 커질수록 효과가 커지는 구조라, 잘 버는 해에 안 해두면 그해가 제일 아깝습니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">03</span>
+      <div>
+        <p class="q">장부를 안 쓰고, 5월에 경비율로 대충 신고하고 있다.</p>
+        <p class="why"><span class="tag">체크했다면</span>장부가 없으면 실제로 쓴 돈이 아니라 <b>정해진 비율로 계산한 금액</b>만 비용으로 인정됩니다. 실제 비용이 그보다 크면 그 차액만큼 세금을 더 낸 겁니다. 게다가 일정 규모를 넘으면 장부를 안 썼다는 이유로 가산세까지 붙습니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">04</span>
+      <div>
+        <p class="q">내가 받을 수 있는 세액감면이 뭔지 말할 수 없다.</p>
+        <p class="why"><span class="tag">체크했다면</span>업종과 지역, 나이, 창업 시기에 따라 <b>세금 자체를 깎아주는 제도</b>가 있습니다. 그런데 신고할 때 챙기지 않으면 그냥 지나갑니다. 다만 지나간 것도 되돌릴 수 있는 기간이 남아 있습니다 — 이게 제일 아까운 항목입니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">05</span>
+      <div>
+        <p class="q">“현금으로 하면 깎아드릴게요”를 받아본 적이 있다. 또는 증빙 없이 처리한 지출이 있다.</p>
+        <p class="why"><span class="tag">체크했다면</span>계산해보면 대부분 <b>깎인 것보다 잃은 게 큽니다.</b> 증빙이 없으면 비용 인정이 막히거나 가산세가 붙고, 부가세도 못 돌려받습니다. 할인받았다고 생각한 그 순간이 실제로는 더 비쌌던 경우가 많습니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="section-key">B</span>
+      <h2 class="section-name">지금은 조용한 것</h2>
+      <span class="section-note">나중에 터지는 것</span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">06</span>
+      <div>
+        <p class="q">매출 일부를 현금이나 개인계좌로 받고 신고에서 뺀 게 있다.</p>
+        <p class="why"><span class="tag">체크했다면</span>이건 절세의 영역이 아니라 <b>다른 종류의 문제입니다.</b> 카드·현금영수증·계좌·배달앱·플랫폼 정산 내역은 이미 자료로 남아 있고, 대조는 사람이 하지 않습니다. 여기에 체크하셨다면 다른 11개보다 이것부터 정리하셔야 합니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">07</span>
+      <div>
+        <p class="q">알바나 외주한테 돈을 주면서 신고는 하지 않았다.</p>
+        <p class="why"><span class="tag">체크했다면</span>두 번 손해입니다. <b>그 돈은 비용으로 못 쓰고,</b> 나중에 드러나면 세금에 4대보험까지 소급됩니다. 특히 “며칠만 쓴 알바”, “한 번 맡긴 외주”처럼 작게 시작한 게 몇 년 쌓이면 금액이 생각보다 큽니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">08</span>
+      <div>
+        <p class="q">가족한테 급여를 주고 있는데, 실제로 일한 근거는 없다.</p>
+        <p class="why"><span class="tag">체크했다면</span>근거가 없으면 <b>그 인건비 전체가 부인될 수 있습니다.</b> 핵심은 이겁니다 — 근거는 <b>미리 만들어 두는 것</b>이지, 질문받은 다음에 만드는 게 아닙니다. 그때 만들면 그건 다른 문제가 됩니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">09</span>
+      <div>
+        <p class="q">부가세나 종합소득세 낼 때마다 돈이 없어서 급하게 마련한다.</p>
+        <p class="why"><span class="tag">체크했다면</span>부가세로 받아둔 그 돈, <b>애초에 내 돈이 아니었습니다.</b> 잠깐 맡아둔 돈이에요. 현금흐름 문제로 보이지만 사실은 관리 구조 문제고, 구조를 안 바꾸면 매번 똑같이 반복됩니다. 이 항목에 체크한 사람은 대개 10번에도 체크합니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <span class="section-key">C</span>
+      <h2 class="section-name">아직 안 만들어 둔 것</h2>
+      <span class="section-note">설계의 공백</span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">10</span>
+      <div>
+        <p class="q">사업 통장과 생활비 통장이 나뉘어 있지 않다.</p>
+        <p class="why"><span class="tag">체크했다면</span>개인사업자가 겪는 문제의 절반은 여기서 시작됩니다. 섞여 있으면 <b>어디까지가 비용인지 증명할 수가 없고,</b> 내가 지금 얼마를 버는지도 모르게 됩니다. 통장 하나 더 만드는 걸로 해결되는데, 이걸 안 해서 매년 손해 보는 사람이 정말 많습니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">11</span>
+      <div>
+        <p class="q">소득이 늘었는데, 법인전환은 한 번도 검토해본 적 없다.</p>
+        <p class="why"><span class="tag">체크했다면</span>개인사업자는 소득이 커질수록 세율이 계단식으로 올라갑니다. 판단 기준은 매출이 아니라 <b>이익</b>이고, 이건 타이밍 문제입니다. 넘어갈 시점을 지나서 옮기면 그 사이 몇 년치가 그대로 차이로 남습니다. 반대로 아직 아닌데 옮겨도 손해고요. 한 번은 계산해보셔야 합니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+
+    <div class="item" role="checkbox" aria-checked="false" tabindex="0">
+      <span class="num">12</span>
+      <div>
+        <p class="q">세금 신고를 혼자 한다. 또는 맡기고 있어도 먼저 알려주는 사람은 없다.</p>
+        <p class="why"><span class="tag">체크했다면</span>이건 세금 문제가 아니라 <b>신호입니다.</b> 세금은 신고할 때 줄이는 게 아니라 그전에 만들어 두는 거라서, 5월에 처음 들여다보면 그때는 이미 정해져 있습니다. 위의 11개 중 몇 개에 체크하셨다면, 몰라서가 아니라 <b>아무도 먼저 말해주지 않아서</b>일 가능성이 높습니다.</p>
+      </div>
+      <span class="box"></span>
+    </div>
+  </section>
+
+  <div class="tally">
+    <span class="tally-label">체크</span>
+    <span class="tally-count" id="count">0<small>/12</small></span>
+    <span class="tally-bar"><i id="bar"></i></span>
+    <button class="reset" id="reset" type="button">다시하기</button>
+  </div>
+
+  <div class="verdict">
+    <p class="verdict-h">주 문</p>
+    <p class="verdict-grade" id="grade">아직 체크 전이다.</p>
+    <p class="verdict-body" id="verdictA">위 12개 중 해당되는 것을 체크하면 여기에 판정이 나온다.</p>
+    <p class="verdict-body" id="verdictB"></p>
+  </div>
+
+  <div class="send">
+    <h3>결과 보내주시면, 정리해서 알려드리겠습니다.</h3>
+    <p>어디서 얼마나 새고 있는지, 그중 지금 당장 손댈 수 있는 게 뭔지.</p>
+    <p><b>여기까지는 비용 없습니다.</b></p>
+
+    <button class="btn" id="sendBtn" type="button" disabled>먼저 체크부터 해주세요</button>
+    <button class="btn-sub" id="copyBtn" type="button">결과만 복사하기</button>
+
+    <div class="sent-msg" id="sentMsg"></div>
+
+    <div class="fallback" id="fallback">
+      <textarea id="fallbackText" readonly></textarea>
+      <p>위 내용을 길게 눌러 복사한 뒤 보내주시면 됩니다.</p>
+    </div>
+  </div>
+
+  <section class="cta">
+    <h3>참고로, 이 번호는 특히 급합니다</h3>
+    <ul class="cta-list">
+      <li><b>1번, 10번</b> — 오늘 30분이면 끝납니다. 제일 먼저 하시면 되는 것들.</li>
+      <li><b>3번, 4번</b> — 지나간 것도 되돌릴 수 있는 기간이 있습니다. 이게 제일 급합니다.</li>
+      <li><b>6번</b> — 다른 것보다 이것부터. 미루면 선택지가 줄어듭니다.</li>
+      <li><b>11번, 12번</b> — 신고 시즌 말고 지금 보셔야 합니다.</li>
+    </ul>
+
+    <div class="signature">
+      <p class="sig-name">독종 세무사 전민우
+        <span>국가기관과 싸워 이긴 세무사 · 사건번호 2023-30621<br><a href="https://pyoseontax.com" style="color:#7A7E85;">세무회계 표선</a> · 역삼역 2번 출구 도보 5분</span>
+      </p>
+      <div class="seal">독종<br>세무사</div>
+    </div>
+  </section>
+
+  <p class="disclaimer">
+    본 문진표는 일반적인 세무 이슈를 스스로 점검해 보기 위한 참고 자료다. 세법은 개정되고, 같은 항목이라도 업종·규모·거래 구조에 따라 결론이 달라진다. 실제 판단과 처리는 반드시 담당 세무대리인의 검토를 거쳐야 하며, 본 자료만으로 이루어진 의사결정에 대해서는 책임지지 않는다.
+  </p>
+
+</main>
+
+<script>
+/* ============================================================
+   ⬇⬇⬇  여기 한 줄만 바꾸세요  ⬇⬇⬇
+   카카오톡 채널 채팅 주소를 넣으면 됩니다.
+   (카카오 비즈니스 → 채널 관리 → 채널 URL 확인)
+   ============================================================ */
+var KAKAO_URL = "http://pf.kakao.com/_gqmnX/chat";
+/* ============================================================ */
+
+(function(){
+  var KIND  = "개인사업자·프리랜서";
+  var items = Array.prototype.slice.call(document.querySelectorAll('.item'));
+  var countEl=document.getElementById('count'), barEl=document.getElementById('bar');
+  var gradeEl=document.getElementById('grade'), vA=document.getElementById('verdictA'), vB=document.getElementById('verdictB');
+  var sendBtn=document.getElementById('sendBtn'), copyBtn=document.getElementById('copyBtn');
+  var sentMsg=document.getElementById('sentMsg'), fallback=document.getElementById('fallback'), fallbackText=document.getElementById('fallbackText');
+
+  var VERDICTS = [
+    { max:0, grade:'아직 체크 전이다.',
+      a:'위 12개 중 해당되는 것을 체크하면 여기에 판정이 나온다.', b:'' },
+    { max:2, grade:'기본은 지키고 있다. 다만 끝난 건 아니다.',
+      a:'큰 구멍은 없다. 혼자 하면서 이 정도면 잘 챙기고 있는 편이다.',
+      b:'다만 체크한 항목은 그대로 두면 매년 같은 금액이 반복된다. 대부분 한 번 손보면 끝나는 것들이니, 올해 신고 전에 정리해두는 게 좋다.' },
+    { max:5, grade:'새고 있다. 매년 같은 금액이 반복되고 있다.',
+      a:'체크한 항목들은 대부분 “몰라서”가 아니라 “아무도 말해주지 않아서” 생긴 것들이다. 그리고 개인사업자는 이런 항목이 해마다 그대로 반복된다는 게 문제다.',
+      b:'중요한 건 순서다. 12개를 한꺼번에 손댈 필요는 없다. 체크한 것 중 오늘 바로 되는 것부터 하나씩만 정리해도 다음 신고에서 체감이 다르다.' },
+    { max:12, grade:'지금 방식 자체를 다시 봐야 한다.',
+      a:'항목을 하나씩 고치는 단계는 지났다. 이 정도로 체크가 몰려 있으면 특정 실수가 아니라 관리 방식에서 나온 결과라고 봐야 한다.',
+      b:'이 상태로 신고 시즌까지 가면 그때는 손댈 게 없다. 세금은 신고할 때 줄이는 게 아니라 그전에 만들어 두는 거라서, 5월에 처음 들여다보면 이미 정해져 있다.' }
+  ];
+
+  function checkedNums(){
+    var out=[];
+    items.forEach(function(el,i){ if(el.getAttribute('aria-checked')==='true') out.push(i+1); });
+    return out;
+  }
+
+  function summaryText(){
+    var n = checkedNums();
+    return '[세금 자가진단 결과]\n'
+         + '구분: ' + KIND + '\n'
+         + '체크: ' + n.join(', ') + '번 (총 ' + n.length + '개)\n'
+         + '판정: ' + gradeEl.textContent + '\n\n'
+         + '업종: \n'
+         + '연매출: ';
+  }
+
+  function render(){
+    var n = checkedNums().length;
+    countEl.innerHTML = n + '<small>/12</small>';
+    barEl.style.right = (100 - (n/12)*100) + '%';
+
+    var v = VERDICTS.find(function(x){ return n <= x.max; });
+    gradeEl.textContent = v.grade;
+    vA.textContent = v.a;
+    vB.textContent = v.b;
+    vB.style.display = v.b ? '' : 'none';
+
+    sendBtn.disabled = (n === 0);
+    sendBtn.textContent = (n === 0)
+      ? '먼저 체크부터 해주세요'
+      : '결과 보내기 (' + n + '개 체크)';
+  }
+
+  function copyText(text){
+    if(navigator.clipboard && window.isSecureContext){
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function(resolve,reject){
+      try{
+        var ta=document.createElement('textarea');
+        ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        var ok=document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? resolve() : reject();
+      }catch(e){ reject(e); }
+    });
+  }
+
+  function showFallback(text){
+    fallbackText.value = text;
+    fallback.style.display='block';
+    sentMsg.style.display='none';
+  }
+
+  function notify(msg){
+    sentMsg.textContent = msg;
+    sentMsg.style.display='block';
+    fallback.style.display='none';
+  }
+
+  sendBtn.addEventListener('click', function(){
+    var text = summaryText();
+    copyText(text).then(function(){
+      notify('결과가 복사됐습니다. 카톡이 열리면 붙여넣기만 하시면 됩니다. 업종·연매출까지 채워주시면 더 정확합니다.');
+      window.open(KAKAO_URL, '_blank', 'noopener');
+    }).catch(function(){
+      showFallback(text);
+      window.open(KAKAO_URL, '_blank', 'noopener');
+    });
+  });
+
+  copyBtn.addEventListener('click', function(){
+    var text = summaryText();
+    copyText(text).then(function(){
+      notify('복사됐습니다. 카톡이나 메시지로 붙여넣어 보내주세요.');
+    }).catch(function(){ showFallback(text); });
+  });
+
+  function toggle(el){
+    el.setAttribute('aria-checked', el.getAttribute('aria-checked')==='true' ? 'false' : 'true');
+    render();
+  }
+  items.forEach(function(el){
+    el.addEventListener('click', function(){ toggle(el); });
+    el.addEventListener('keydown', function(e){
+      if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(el); }
+    });
+  });
+  document.getElementById('reset').addEventListener('click', function(){
+    items.forEach(function(el){ el.setAttribute('aria-checked','false'); });
+    sentMsg.style.display='none'; fallback.style.display='none';
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
